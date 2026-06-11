@@ -76,12 +76,12 @@ This is the real engine. Key functional groups:
 
 2. **"C-3" parsing**: `transform_sent` and `parse_one_word` will match single-letter `C` followed by a digit under flag `1a`. There's no glyco-context filter at the parsing stage - that filtering happens later in `get_match_dict` via the `str_b != "no_glyco_ents"` gate, but if glyco terms are present in the abstract anyway (common in glycobiology papers), the bad site still passes through.
 
-3. **`load_curated_neg` hardcodes a path** (`/data/shared/glycositeminer/userdata/curation/*`) — this means our curation output needs to land in exactly that location to feed the negative training set. 
+3. **`load_curated_neg` hardcodes a path** (`/data/shared/glycositeminer/userdata/curation/*`): this means our curation output needs to land in exactly that location to feed the negative training set. 
 
-Personal note: Worth confirming with Robel that the curation data is actually reaching that path.
+> Personal note: Worth confirming with Robel that the curation data is actually reaching that path.
 
 4. **No `download-pipeline-data.py` mode flag in config.json**: the script checks `config["mode"] == "dev"` but the current `config.json` doesn't have a `"mode"` key, which would throw a `KeyError` at runtime. 
 
-Personal note: Confirm if it's likely a placeholder for a dev/prod switch that hasn't been fully wired up.
+> Personal note: Confirm if it's likely a placeholder for a dev/prod switch that hasn't been fully wired up.
 
-5. **LLM prompt has no glycosylation-specific instruction** — it asks for glycosylation sites but doesn't tell the model to distinguish glycosylation from phosphorylation or other PTMs, which is consistent with the tyrosine phosphorylation false-positive pattern you've been filtering manually.
+5. **LLM prompt has no glycosylation-specific instruction**: it asks for glycosylation sites but doesn't tell the model to distinguish glycosylation from phosphorylation or other PTMs, which is consistent with the tyrosine phosphorylation false-positive pattern we've been filtering manually.
