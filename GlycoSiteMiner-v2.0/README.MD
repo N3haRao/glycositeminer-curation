@@ -23,7 +23,7 @@ GlycoSiteMiner-v2.0/
 
 ---
 
-### config.json — Key Settings
+### config.json: Key Settings
 
 The LLM is configured as **GPT-4o-mini** with a structured output schema. The query prompt is:
 > *"give me gene entity, protein entity, glycosylation sites, tissue, cell line and organism only using information provided in the following text"*
