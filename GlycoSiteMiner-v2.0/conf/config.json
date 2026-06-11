@@ -1,1 +1,75 @@
+{
+	"data_dir":"data/",
+	"glygen_rel":"2.11.1",
+	"gene_info":{
+		"Mammalia":[
+        	"Bos_taurus.gene_info.gz",
+        	"Homo_sapiens.gene_info.gz",
+        	"Mus_musculus.gene_info.gz",
+        	"Rattus_norvegicus.gene_info.gz",
+        	"Sus_scrofa.gene_info.gz"
+		],
+		"Fungi":[
+        	"Saccharomyces_cerevisiae.gene_info.gz"
+		],
+		"Plants":[
+        	"Arabidopsis_thaliana.gene_info.gz"
+		]
+	},
+	"llm":{
+		"api_key":"sk-proj-...",
+		"model":"gpt-4o-mini",
+		"role":"assistant",
+		"query": "give me gene entity, protein entity, glycosylation sites, tissue, cell line and organism only using information provided in the following text",
+		"schema":{
+    		"type": "object",
+    		"properties": {
+        		"glycosylation_sites": {
+            	"type": "array",
+            	"items": {
+                	"type": "object",
+                	"properties": {
+                    	"glycosylation_site": {"type": "string"},
+                    	"gene_entity": {"type": "string"},
+                    	"protein_entity": {"type": "string"},
+							"organism": {"type": "string"},
+                    	"tissue": {"type": "string"},
+                    	"cell_line": {"type": "string"}
+                	},
+                	"required": ["glycosylation_site", "gene_entity"],
+                	"additionalProperties": false
+            	}
+        		}
+    		},
+    		"required": ["glycosylation_sites"],
+    		"additionalProperties": false
+		}
+	},
+	"glygen_src_list":[
+		"carbbank",
+	"c_man",
+	"diabetes_glycomic",
+	"embl",
+	"glycomeatlas",
+	"glyconnect",
+	"glycosmos",
+	"gptwiki",
+	"harvard",
+	"oglcnac_atlas",
+	"oglcnac_mcw",
+	"o_gluc",
+	"pdb",
+	"pdc_ccrcc",
+	"platelet",
+	"rcsb_pdb",
+	"tablemaker",
+	"twinsuk",
+	"tyr_o_linked",
+	"unicarbkb",
+	"unicarbkb_glycomics_study",
+	"uniprotkb"
+	]
+}
+
+
 
