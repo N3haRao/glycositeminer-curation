@@ -2,8 +2,7 @@
 
 ## Overview
 
-I worked through the full data download and preprocessing pipeline for GlycoSiteMiner-v2.0, completing Steps 1 and 2 from `tasks.md`. Along the way I ran into several bugs caused by Windows/Unix incompatibilities and a stale column index, all of which I fixed before moving on. Here is a full account of everything I did.
-
+I worked through the full data download and preprocessing pipeline for GlycoSiteMiner-v2.0, completing Steps 1 and 2 from `tasks.md`. 
 ---
 
 ## Step 1: Data Download
@@ -51,8 +50,6 @@ Final output: 807 `.xml.gz` files in `data/medline_xml/`.
 ---
 
 ## Step 2: Extract Known Sites
-
-### Bug Fixed
 
 `extract-known-sites.py` crashed immediately with a `UnicodeDecodeError`. On Windows, Python defaults to the `cp1252` encoding when opening files without an explicit encoding, and one of the GlyGen CSVs contained a byte (`0x9d`) that `cp1252` cannot decode. I fixed this by:
 
