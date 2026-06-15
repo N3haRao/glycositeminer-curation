@@ -11,6 +11,7 @@ GlycoSiteMiner-v2.0/
 ├── conf/
 │   ├── config.json          # data_dir, LLM settings, GlyGen release, species list
 │   └── medline.json         # PubMed baseline/updatefiles download range
+├── log/                     # weekly coding log
 ├── download-glygen.py       # Downloads GlyGen reference data
 ├── download-medline.py      # Downloads PubMed XML bulk files
 ├── download-pubtator.py     # Downloads PubTator3 NER annotations
