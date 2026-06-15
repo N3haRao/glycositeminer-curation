@@ -2,7 +2,9 @@
 
 ## Overview
 
+
 I worked through the full data download and preprocessing pipeline for GlycoSiteMiner-v2.0, completing Steps 1 and 2 from `tasks.md`. 
+
 ---
 
 ## Step 1: Data Download
