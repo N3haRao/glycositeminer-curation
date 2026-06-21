@@ -1,4 +1,5 @@
 import sys
+import os
 import string
 import json
 import subprocess
@@ -19,17 +20,17 @@ def main():
 
 
     out_file = glygen_dir + "known_sites.csv"
-    FW = open(out_file, "w") 
+    FW = open(out_file, "w", encoding="utf-8")
     newrow = ["doc_id","canon","pos","amino_acid","source"]
     FW.write("\"%s\"\n" % ("\",\"".join(newrow)))
  
     row_list = []
     seen = {}        
     for in_file in file_list:
-        file_name = in_file.split("/")[-1]
+        file_name = os.path.basename(in_file)
         lcount = 0
         f_list = []
-        with open(in_file, "r") as FR:
+        with open(in_file, "r", encoding="utf-8", errors="ignore") as FR:
             for line in FR:
                 lcount += 1
                 if lcount == 1:
