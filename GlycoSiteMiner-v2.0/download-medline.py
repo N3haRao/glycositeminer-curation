@@ -29,7 +29,8 @@ def main():
             idx = zeros[:padlen] + str(idx)
             file_name = "pubmed%sn%s.xml.gz" % (year, idx)
             out_file_one = xml_folder + "/" + file_name
-            #cmd = "wget %s%s -O %s" % (ftp_url, file_name, out_file_one)
+            if os.path.isfile(out_file_one):
+                continue
             cmd = "curl %s%s -o %s" % (ftp_url, file_name, out_file_one)
             x = subprocess.getoutput(cmd)
 
@@ -41,5 +42,4 @@ def main():
 
 if __name__ == '__main__':
     main()
-
 
