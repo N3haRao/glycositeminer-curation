@@ -2,13 +2,13 @@
 	"baseline":{
 		"url":"https://ftp.ncbi.nlm.nih.gov/pubmed/baseline/",
 		"start":1,
-		"end":10,
-      "year":26
+		"end":657,
+		"year":26
 	},
 	"updatefiles":{
 		"url":"https://ftp.ncbi.nlm.nih.gov/pubmed/updatefiles/",
 		"start":1335,
-		"end":1355,
+		"end":1484,
 		"year":26
 	}
 }
