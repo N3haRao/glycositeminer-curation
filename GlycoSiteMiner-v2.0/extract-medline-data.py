@@ -67,8 +67,23 @@ def main():
     aa_dict = util.get_aa_dict("misc/")
     end_idx = len(file_list) if end_idx > len(file_list) else end_idx
 
+    # I build a set of already-completed XML files by reading the log so that
+    # if a worker is restarted after a crash it picks up where it left off
+    # rather than reprocessing everything from the beginning of its batch
+    completed_files = set()
+    if os.path.isfile(log_file):
+        with open(log_file, "r", encoding="utf-8") as FL:
+            for line in FL:
+                if line.startswith("final"):
+                    fname = line.strip().split("from ")[-1]
+                    completed_files.add(fname)
+
     for gz_xml_file in file_list[start_idx - 1:end_idx]:
         if not gz_xml_file.endswith(".gz"):
+            continue
+
+        # I skip files already marked as finished in the log so restarts are safe
+        if gz_xml_file in completed_files:
             continue
 
         # I use os.path.basename instead of split("/")[-1] because Windows paths
