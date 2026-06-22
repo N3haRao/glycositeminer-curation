@@ -20,11 +20,12 @@ def main():
     xml_file_list = sorted(glob.glob(xml_dir + "/%s.xml.gz" % (pattern)))
     n = len(xml_file_list)
 
-    # I split the full file list into up to 12 equal batches so each worker
-    # only handles a manageable slice of the 807 XML files
-    batch_size = int(len(xml_file_list) / 10) if len(xml_file_list) > 10 else len(xml_file_list)
+    # I use 4 workers instead of 12 to avoid running out of memory; each spaCy
+    # instance is heavy and 12 at once was causing the OS to kill the processes
+    NUM_WORKERS = 4
+    batch_size = int(len(xml_file_list) / NUM_WORKERS) if len(xml_file_list) > NUM_WORKERS else len(xml_file_list)
     range_list = []
-    for i in range(0, 12):
+    for i in range(0, NUM_WORKERS + 1):
         s = i * batch_size + 1
         e = s + batch_size
         if e >= n:
